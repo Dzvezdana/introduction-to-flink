@@ -80,7 +80,6 @@ There will always be a delay until an event is processed by a query. While this 
 in the past, applications today must be able to collect data in real-time and immediately act on it (e.g., by adjusting 
 to changing conditions in a mobile game or by personalizing user experiences for an online retailer).
 
-
 Instead of waiting to be periodically triggered, a streaming analytics application continuously ingests streams of events 
 and updates its result by incorporating the latest events with low latency.
 
@@ -101,8 +100,7 @@ and updates its result by incorporating the latest events with low latency.
 * First generation - Lambda Architecture
 Data processing systems could either provide fast or accurate results led to the design of the so-called lambda architecture.
 In Lambda we have 2 pipelines Batch and Speed. The Batch part processes batches of data correctly and writes them in a batch table. The speed part processes data in near real time and writes this approximated results in a speed table. Then we drop the corresponding inaccurate results from the speed table.
-
-Disadvantages:
+Some disadvantages:
 
 	- It requires two semantically equivalent implementations of the application logic for two separate processing systems with different APIs. 
 	- The results computed by the stream processor are only approximate. 
