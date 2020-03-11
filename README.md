@@ -5,6 +5,8 @@
 * sbt 1.3.8
 * Scala 2.12.7
 * jdk 1.8
+* Flink
+* Kafka
 
 ### Set up Kafka
 #### Step 1: Download the code
@@ -34,7 +36,7 @@ Now start the Kafka server:
 
 ## Exercise 1
 
-Let's implement a simple word count program. Go to `kafka_flink_wordcount_example`.
+Let's implement a simple word count program. Go to `kafka_flink_wordcount_example` and follow the TODOs.
 Create a Flink Kafka Consumer that consumes the data produced by our Kafka producer on the `inputword` topic.
 
 Push data into the Kafka topic using:
@@ -45,7 +47,7 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic inputword
 ## Exercise 2
 
 ### Step 1: Create the topics
-Let's create a topics named "filtered_sample" and "sample_sensor" with a single partition and only one replica:
+Let's create a topics named `filtered_sample` and `sample_sensor` with a single partition and only one replica:
 
 ```bash
 > bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic filtered_sample
