@@ -1,6 +1,7 @@
 # Introduction to Flink
 
-## Step 1: Download the code
+## Set up Kafka
+### Step 1: Download the code
 [Download](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.4.0/kafka_2.12-2.4.0.tgz) the 2.4.0 release and un-tar it.
 
 ```bash
@@ -8,7 +9,7 @@
 > cd kafka_2.12-2.4.0
 ```
 
-## Step 2: Start the server
+### Step 2: Start the server
 Kafka uses ZooKeeper so you need to first start a ZooKeeper server if you don't already have one. You can use the convenience script packaged with kafka to get a quick-and-dirty single-node ZooKeeper instance.
 
 ```bash
@@ -25,9 +26,18 @@ Now start the Kafka server:
 ...
 ```
 
-## Step 3: Create the topics
-Let's create a topic named "test" with a single partition and only one replica:
+### Step 3: Create the topics
+Let's create a topics named "filtered_sample" and "sample_sensor" with a single partition and only one replica:
 
 ```bash
-> bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
+> bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic filtered_sample
+> bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic sample_sensor
+```
+
+### Step 4: Start the producer
+Let's generate some sensor data by starting the producer:
+
+```python
+cd data_generator
+python kafka_producer.py
 ```
