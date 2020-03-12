@@ -73,7 +73,7 @@ Leave the programm running.
 
 ### Step 3: Let's create our Flink application.
 
-Go to `kafka_flink_sensor_example`. Create a Flink Kafka Consumer that consumes the data produced by our Kafka producer on the `sample_sensor` topic. Filter all messages that have `status: failed`. After filtering the messages, create new Flink Kafka producer that will publish the filtered stream on the `filtered_sample` topic.
+Go to `kafka_flink_sensor_example`. Create a Flink Kafka Consumer that consumes the data produced by our Kafka producer on the `sample_sensor` topic. Filter out all messages that have `status: failed`. After filtering the messages, create new Flink Kafka producer that will publish the filtered stream on the `filtered_sample` topic.
 
 If you did everything correctly you should see the filtered messages being printed by our kafka python consumer.
 
