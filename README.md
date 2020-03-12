@@ -56,7 +56,7 @@ Let's create a topics named `filtered_sample` and `sample_sensor` with a single 
 
 ### Step 2: Start the producer
 
-Create a virtual environment and install Kafka using:
+Create a virtual environment and install the requirements using:
 ```python
 pip install kafka-python
 pip install numpy
