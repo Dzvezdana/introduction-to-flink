@@ -59,6 +59,7 @@ Let's create a topics named `filtered_sample` and `sample_sensor` with a single 
 Create a virtual environment and install Kafka using:
 ```python
 pip install kafka-python
+pip install numpy
 ```
 
 Let's generate some sensor data by starting the producer:
