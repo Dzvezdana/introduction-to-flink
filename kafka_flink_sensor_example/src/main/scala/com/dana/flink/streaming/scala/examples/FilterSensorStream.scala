@@ -18,8 +18,6 @@ import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKaf
   *  - publish the transformed data to another topic.
   */
 
-case class JsonMessage(timestamp: String, temperature: Double, status: String, id: Int)
-
 object FilterSensorStream {
   implicit val jsonMessageReads: Reads[JsonMessage] = Json.reads[JsonMessage]
   implicit val jsonMessageWrite: Writes[JsonMessage] = Json.writes[JsonMessage]
@@ -42,9 +40,9 @@ object FilterSensorStream {
     kafkaStream.print()
 
     val jsonStream = kafkaStream
-      .map(entry => Json.fromJson[JsonMessage](Json.parse(entry)))
-      .filter(_.isInstanceOf[JsSuccess[JsonMessage]])
-      .map(_.get)
+      .map(entry => Json.fromJson[JsonMessage](Json.parse(entry))) //JSON to Scala object
+      .filter(_.isInstanceOf[JsSuccess[JsonMessage]]) // filter successfully parsed messages
+      .map(_.get) //get the result of the successful parsing
 
     val filteredJsonStream = jsonStream.filter(_.status == "ok")
     filteredJsonStream.print().setParallelism(1)
@@ -54,6 +52,7 @@ object FilterSensorStream {
       new SimpleStringSchema,
       kafkaProperties
     )
+    // toJson Scala object to JSON
     filteredJsonStream.map(elem => Json.toJson(elem)).map(Json.stringify(_)).addSink(kafkaProducer)
 
     env.execute("KafkaExample")

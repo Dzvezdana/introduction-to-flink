@@ -11,7 +11,7 @@ import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKaf
 /**
   * Implements a simple word count program.
   *
-  * The input are words from Kafka.
+  * The input is words stream from Kafka.
   */
 object WordCount {
   def main(args: Array[String]) {
